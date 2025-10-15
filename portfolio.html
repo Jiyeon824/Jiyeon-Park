@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <!-- 문서 메타 정보 -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>박지연 | Portfolio</title>
+
+    <!-- Pretendard 폰트 CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
+    />
+
+    <!-- Tailwind CSS CDN (Play) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Tailwind 커스텀 설정: 컬러/폰트 확장 -->
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg: "#F6F4EE", // 배경색
+              bgs: "#E8DCC2", // 보조 배경색
+              text: "#4A403A", // 본문 글자색
+              primary: "#F4976C", // 포인트 컬러 (버튼 등)
+              hover: "#D9B26E", // 호버 컬러
+              accent: "#E2725B", // 시각화/강조 1
+              accent2: "#7BA8A8", // 시각화/강조 2
+              accent3: "#A6A57A", // 시각화/강조 3
+            },
+            fontFamily: {
+              sans: ["Pretendard", "ui-sans-serif", "system-ui", "-apple-system"],
+            },
+            boxShadow: {
+              soft: "0 10px 25px rgba(0,0,0,0.06)", // 부드러운 그림자
+            },
+            borderRadius: {
+              xl2: "1rem", // 카드 등에 사용할 라운드 값
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- 페이지 전역 스타일(선택): 스크롤 부드럽게 -->
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+
+  <!-- body: 전체 페이지 컨테이너 -->
+  <body class="bg-bg text-text font-sans">
+    <!-- 고정 내비게이션 바 -->
+    <header class="sticky top-0 z-50 backdrop-blur bg-bg/80 border-b border-bgs">
+      <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <!-- 좌측 로고/이름 -->
+          <a href="#home" class="text-lg font-semibold tracking-tight">박지연 Portfolio</a>
+
+          <!-- 데스크톱 메뉴 -->
+          <ul class="hidden md:flex items-center gap-8 text-sm">
+            <li><a class="hover:text-primary" href="#about">About</a></li>
+            <li><a class="hover:text-primary" href="#projects">Projects</a></li>
+            <li><a class="hover:text-primary" href="#contact">Contact</a></li>
+          </ul>
+
+          <!-- 모바일 메뉴 버튼 -->
+          <button
+            id="mobileMenuBtn"
+            class="md:hidden inline-flex items-center justify-center rounded-md p-2 hover:bg-bgs focus:outline-none focus:ring-2 focus:ring-primary"
+            aria-label="모바일 메뉴 열기"
+            aria-expanded="false"
+          >
+            <!-- 햄버거 아이콘 -->
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- 모바일 드롭다운 메뉴 -->
+        <div id="mobileMenu" class="md:hidden hidden py-2 border-t border-bgs">
+          <a class="block px-3 py-2 rounded hover:bg-bgs" href="#about">About</a>
+          <a class="block px-3 py-2 rounded hover:bg-bgs" href="#projects">Projects</a>
+          <a class="block px-3 py-2 rounded hover:bg-bgs" href="#contact">Contact</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- 메인 Hero 섹션: 슬로건 강조 영역 -->
+    <section id="home" class="relative overflow-hidden">
+      <!-- 배경 장식 (부드러운 그라데이션 원) -->
+      <div class="absolute -top-24 -right-24 w-72 h-72 bg-primary/30 rounded-full blur-3xl"></div>
+      <div class="absolute -bottom-24 -left-24 w-72 h-72 bg-accent2/30 rounded-full blur-3xl"></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
+        <!-- 슬로건 큰 타이포그래피 -->
+        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold leading-tight">
+          변화와 도전을 즐기며, <nav>팀과 함께 성장하는 박지연 입니다.
+        </h1>
+
+        <!-- 서브텍스트: 간단 소개 -->
+        <p class="mt-6 text-base sm:text-lg max-w-2xl">
+          사용자 중심 경험을 설계하고, 데이터 활용과 협업으로 성장하는 PM.
+        </p>
+
+        <!-- 주요 CTA 버튼들 -->
+        <div class="mt-10 flex items-center gap-4">
+          <a href="#projects" class="px-5 py-3 rounded-xl bg-primary text-bg font-semibold shadow-soft hover:bg-hover transition-colors">
+            포트폴리오 보기
+          </a>
+          <a href="#contact" class="px-5 py-3 rounded-xl bg-bgs text-text font-semibold hover:bg-hover/20 border border-bgs transition-colors">
+            연락하기
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About 섹션: 소개/정보 블록 -->
+    <section id="about" class="py-16 sm:py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- 섹션 제목 -->
+        <h2 class="text-2xl sm:text-3xl font-bold">About</h2>
+        <p class="mt-2 text-sm text-text/80"> </p>
+
+        <!-- 정보 카드 컨테이너 -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- 프로필 카드 -->
+          <article class="col-span-1 md:col-span-1 bg-bgs rounded-xl2 p-6 shadow-soft">
+            <h3 class="text-lg font-semibold">프로필</h3>
+            <div class="mt-4 space-y-2 text-sm">
+              <p><span class="font-medium">이름</span> · 박지연</p>
+              <p><span class="font-medium">이메일</span> · <a class="underline hover:text-primary" href="mailto:englishjenny824@gmail.com">englishjenny824@gmail.com</a></p>
+              <p><span class="font-medium">번호</span> · <span id="phoneText">010-8489-6723</span></p>
+            </div>
+          </article>
+
+          <!-- 기술스택 카드 -->
+          <article class="col-span-1 bg-bgs rounded-xl2 p-6 shadow-soft">
+            <h3 class="text-lg font-semibold">스킬</h3>
+            <!-- 아이콘 느낌의 태그 -->
+            <ul class="mt-4 flex flex-wrap gap-2 text-xs">
+              <li class="px-3 py-1 rounded-full bg-bg border border-bgs">Figma</li>
+              <li class="px-3 py-1 rounded-full bg-bg border border-bgs">Notion</li>
+              <li class="px-3 py-1 rounded-full bg-bg border border-bgs">SQL</li>
+              <li class="px-3 py-1 rounded-full bg-bg border border-bgs">Excel</li>
+              <li class="px-3 py-1 rounded-full bg-bg border border-bgs">Power Point</li>
+              <li class="px-3 py-1 rounded-full bg-bg border border-bgs">MS Word</li>
+              <li class="px-3 py-1 rounded-full bg-bg border border-bgs">Google Docs</li>
+              <li class="px-3 py-1 rounded-full bg-bg border border-bgs">Google sheet</li>
+              <li class="px-3 py-1 rounded-full bg-bg border border-bgs">Photoshop</li>
+              <li class="px-3 py-1 rounded-full bg-bg border border-bgs">Canva</li>
+              <li class="px-3 py-1 rounded-full bg-bg border border-bgs">Capcut</li>
+            </ul>
+          </article>
+
+          <!-- 자격증 카드 -->
+          <article class="col-span-1 bg-bgs rounded-xl2 p-6 shadow-soft">
+            <h3 class="text-lg font-semibold"> 자격증 </h3>
+            <div class="mt-4 space-y-3 text-sm">
+              <!-- 자격증 항목1 -->
+              <div class="p-3 rounded bg-bg border border-bgs">
+                <p class="font-medium">천재IT교육센터 · PM</p>
+                <p class="text-xs text-text/70">2024.06 - 현재 | 에듀테크 서비스 기획</p>
+              </div>
+              <!-- 자격증 항목2 -->
+              <div class="p-3 rounded bg-bg border border-bgs">
+                <p class="font-medium">My folio 서비스 UXUI 개선 공모전 수료</p>
+                <p class="text-xs text-text/70">Blaybus | 2025.09</p>
+              </div>
+              <!-- 자격증 항목3 -->
+            <div class="p-3 rounded bg-bg border border-bgs">
+                <p class="font-medium">TESOL/TEFL course</p>
+                <p class="text-xs text-text/70">World TESOL Academy | 2022.07</p>
+              </div>
+
+            </ul>
+        </article>
+
+        <!-- 경력 카드 -->
+        <article class="col-span-1 bg-bgs rounded-xl2 p-6 shadow-soft">
+          <h3 class="text-lg font-semibold"> 경력 사항 </h3>
+          <div class="mt-4 space-y-3 text-sm">
+            <!-- 경력 항목 예시 -->
+            <div class="p-3 rounded bg-bg border border-bgs">
+              <p class="font-medium">엠파이어어학원(동작,일산 캠퍼스)</p>
+              <p class="text-xs text-text/70">2020.12 - 2022.05 | 센터장</p>
+              <br>
+              <p class="text-xs text-black">- 초등·중등부 영어 수업</p>
+              <p class="text-xs text-black">- 독서 기반 북클럽을 기획·운영</p>
+              <p class="text-xs text-black">- 학부모 신규 및 정기 상담</p>
+              <p class="text-xs text-black">- 학기별 입학설명회를 기획·주관</p>
+              <p class="text-xs text-black">- 블로그·인스타그램 교육 콘텐츠 정기 발행</p>
+            </div>
+            <!-- 경력 항목1 -->
+            <div class="p-3 rounded bg-bg border border-bgs">
+              <p class="font-medium">제시카잉글리쉬 어학원원</p>
+              <p class="text-xs text-text/70">2022.05 - 2023.08 | 센터장장</p>
+              <br>
+              <p class="text-xs text-black">- 초등·중등부 영어 수업</p>
+              <p class="text-xs text-black">- 독서 기반 북클럽을 기획·운영</p>
+              <p class="text-xs text-black">- 학부모 신규 및 정기 상담</p>
+              <p class="text-xs text-black">- 학기별 입학설명회를 기획·주관</p>
+              <p class="text-xs text-black">- 블로그·인스타그램 교육 콘텐츠 정기 발행</p>
+            </div>
+            <!-- 경력 항목2 -->
+          <div class="p-3 rounded bg-bg border border-bgs">
+              <p class="font-medium">엠파이어어학원 (은평 캠퍼스)</p>
+              <p class="text-xs text-text/70">2023.08 - 2024.05 | 대표원장 </p>
+              <br>
+              <p class="text-xs text-black">- 초등·중등부 영어 수업</p>
+              <p class="text-xs text-black">- 독서 기반 북클럽을 기획·운영</p>
+              <p class="text-xs text-black">- 학부모 신규 및 정기 상담</p>
+              <p class="text-xs text-black">- 학기별 입학설명회를 기획·주관</p>
+              <p class="text-xs text-black">- 블로그·인스타그램 교육 콘텐츠 정기 발행</p>
+            </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects 섹션: 3개 프로젝트 그리드 + 모달 상세 -->
+    <section id="projects" class="py-16 sm:py-20 bg-bgs/40">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- 섹션 제목 -->
+        <h2 class="text-2xl sm:text-3xl font-bold">Projects</h2>
+
+
+        <!-- 프로젝트 카드 컨테이너 -->
+        <div class="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- 프로젝트 카드 1 -->
+          <button
+            class="group text-left bg-bg rounded-xl2 p-5 shadow-soft border border-bgs hover:-translate-y-0.5 hover:shadow-lg transition"
+            data-project='{
+              "title":"사용자 온보딩 개선 프로젝트",
+              "period":"2024.05 - 2024.09",
+              "role":"PM / 기획",
+              "stack":"React, TypeScript, GA4, Amplitude, Notion",
+              "goals":["이탈률 20% 감소", "완료율 30% 증가"],
+              "features":["프로세스 단계 축소", "도움말/튜토리얼 A/B 테스트", "이벤트 로깅 개선"],
+              "learnings":["정량 데이터와 정성 인터뷰 결합 의사결정", "디자인-개발-운영 협업 리듬 정착"],
+              "viz":[{"label":"완료율","value":30,"color":"accent"},{"label":"이탈률","value":-20,"color":"accent2"}],
+              "summary":"신규 사용자 온보딩 흐름을 재설계하여 완료율을 끌어올리고 이탈률을 낮춘 프로젝트"
+            }'
+            aria-label="프로젝트 1 상세 보기"
+          >
+            <!-- 카드 헤더(썸네일 대체 그래픽) -->
+            <div class="h-36 rounded-xl2 bg-gradient-to-br from-primary/25 to-accent2/25 flex items-center justify-center">
+              <span class="text-sm font-semibold">Onboarding UX</span>
+            </div>
+            <!-- 카드 본문 -->
+            <div class="mt-4">
+              <h3 class="text-lg font-semibold">사용자 온보딩 개선 프로젝트</h3>
+              <p class="mt-1 text-sm text-text/80">A/B 테스트와 퍼널 분석 기반의 UX 리디자인</p>
+              <span class="mt-3 inline-flex text-xs px-2.5 py-1 rounded-full bg-primary/15 text-text">자세히 보기</span>
+            </div>
+          </button>
+
+          <!-- 프로젝트 카드 2 -->
+          <button
+            class="group text-left bg-bg rounded-xl2 p-5 shadow-soft border border-bgs hover:-translate-y-0.5 hover:shadow-lg transition"
+            data-project='{
+              "title":"데이터 시각화 대시보드 구축",
+              "period":"2024.01 - 2024.04",
+              "role":"PM / 데이터 기획",
+              "stack":"React, Chart.js, BigQuery, AppSheet",
+              "goals":["보고서 작성 시간 40% 단축", "의사결정 리드타임 25% 감소"],
+              "features":["지표 표준화", "권한별 뷰", "자동 리포트 발송"],
+              "learnings":["데이터 품질 관리 체계 중요성", "Stakeholder 맞춤형 뷰 설계"],
+              "viz":[{"label":"보고서 시간","value":-40,"color":"accent"},{"label":"리드타임","value":-25,"color":"accent3"}],
+              "summary":"분산된 데이터를 통합하고 직관적인 대시보드로 업무 효율을 개선"
+            }'
+            aria-label="프로젝트 2 상세 보기"
+          >
+            <div class="h-36 rounded-xl2 bg-gradient-to-br from-accent/25 to-accent3/25 flex items-center justify-center">
+              <span class="text-sm font-semibold">Analytics Dashboard</span>
+            </div>
+            <div class="mt-4">
+              <h3 class="text-lg font-semibold">데이터 시각화 대시보드 구축</h3>
+              <p class="mt-1 text-sm text-text/80">지표 표준화와 자동화로 레포팅 효율 향상</p>
+              <span class="mt-3 inline-flex text-xs px-2.5 py-1 rounded-full bg-primary/15 text-text">자세히 보기</span>
+            </div>
+          </button>
+
+          <!-- 프로젝트 카드 3 -->
+          <button
+            class="group text-left bg-bg rounded-xl2 p-5 shadow-soft border border-bgs hover:-translate-y-0.5 hover:shadow-lg transition"
+            data-project='{
+              "title":"교육 플랫폼 운영 고도화",
+              "period":"2023.09 - 2023.12",
+              "role":"서비스 운영/PM",
+              "stack":"Notion, Slack, Zapier, Firebase",
+              "goals":["CS 응답 SLA 50% 개선", "운영 자동화 15건 구축"],
+              "features":["티켓 라우팅 룰 정비", "운영 대시보드", "알림 자동화"],
+              "learnings":["운영 데이터 기반의 지속 개선", "Cross-functional 협업"],
+              "viz":[{"label":"SLA","value":50,"color":"accent2"},{"label":"자동화","value":15,"color":"accent3"}],
+              "summary":"운영 지표에 기반한 프로세스 개선과 자동화로 안정적인 서비스 운영 달성"
+            }'
+            aria-label="프로젝트 3 상세 보기"
+          >
+            <div class="h-36 rounded-xl2 bg-gradient-to-br from-accent2/25 to-primary/25 flex items-center justify-center">
+              <span class="text-sm font-semibold">Ops Excellence</span>
+            </div>
+            <div class="mt-4">
+              <h3 class="text-lg font-semibold">교육 플랫폼 운영 고도화</h3>
+              <p class="mt-1 text-sm text-text/80">SLA 개선과 자동화로 안정적 운영 확보</p>
+              <span class="mt-3 inline-flex text-xs px-2.5 py-1 rounded-full bg-primary/15 text-text">자세히 보기</span>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <!-- 프로젝트 상세 모달 -->
+      <div id="projectModal" class="fixed inset-0 hidden items-center justify-center bg-black/40 p-4" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="w-full max-w-3xl bg-bg rounded-2xl shadow-soft border border-bgs overflow-hidden">
+          <!-- 모달 헤더 -->
+          <div class="flex items-center justify-between px-6 py-4 border-b border-bgs bg-bgs/60">
+            <h3 id="modalTitle" class="text-lg font-semibold">프로젝트 제목</h3>
+            <button id="closeModalBtn" class="p-2 rounded hover:bg-bgs" aria-label="모달 닫기">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+
+          <!-- 모달 본문 -->
+          <div class="px-6 py-5 space-y-4">
+            <p id="modalSummary" class="text-sm"></p>
+
+            <!-- 메타 정보 (기간/역할/스택) -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-sm">
+              <div class="p-3 rounded bg-bgs/50">
+                <p class="text-xs text-text/70">기간</p>
+                <p id="modalPeriod" class="font-medium">-</p>
+              </div>
+              <div class="p-3 rounded bg-bgs/50">
+                <p class="text-xs text-text/70">역할</p>
+                <p id="modalRole" class="font-medium">-</p>
+              </div>
+              <div class="p-3 rounded bg-bgs/50">
+                <p class="text-xs text-text/70">스택</p>
+                <p id="modalStack" class="font-medium">-</p>
+              </div>
+            </div>
+
+            <!-- 목표/기능/배운점 리스트 -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+              <div>
+                <h4 class="font-semibold">목표</h4>
+                <ul id="modalGoals" class="mt-2 list-disc list-inside space-y-1"></ul>
+              </div>
+              <div>
+                <h4 class="font-semibold">주요 기능</h4>
+                <ul id="modalFeatures" class="mt-2 list-disc list-inside space-y-1"></ul>
+              </div>
+              <div>
+                <h4 class="font-semibold">배운 점</h4>
+                <ul id="modalLearnings" class="mt-2 list-disc list-inside space-y-1"></ul>
+              </div>
+            </div>
+
+            <!-- 간단한 시각화 예시: 배지 막대 -->
+            <div>
+              <h4 class="font-semibold text-sm">성과 시각화</h4>
+              <div id="vizContainer" class="mt-3 flex flex-wrap gap-2"></div>
+              <p class="text-xs text-text/70 mt-1">값은 예시이며 실제 성과 지표로 교체하세요.</p>
+            </div>
+          </div>
+
+          <!-- 모달 푸터 -->
+          <div class="px-6 py-4 bg-bgs/60 border-t border-bgs flex items-center justify-end gap-3">
+            <button id="closeModalBtn2" class="px-4 py-2 rounded bg-bg border hover:bg-bgs">닫기</button>
+            <!-- 필요 시 외부 링크 버튼 예시
+            <a id="modalLink" href="#" target="_blank" class="px-4 py-2 rounded bg-primary text-bg hover:bg-hover">프로젝트 링크</a>
+            -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact 섹션: 심플 연락 폼/링크 -->
+    <section id="contact" class="py-16 sm:py-20">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-2xl sm:text-3xl font-bold">Contact</h2>
+        <p class="mt-2 text-sm text-text/80">간단히 메일을 보내시려면 아래 버튼을 사용하세요.</p>
+
+        <!-- 메일to 버튼 -->
+        <div class="mt-6">
+          <a href="mailto:englishjenny824@gmail.com?subject=%5BPortfolio%5D%20Contact%20from%20Website" class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-primary text-bg font-semibold shadow-soft hover:bg-hover transition-colors">
+            이메일 보내기
+          </a>
+        </div>
+
+        <!-- 소셜 링크 예시(필요 시 수정) -->
+        <div class="mt-6 flex items-center gap-4 text-sm">
+          <a class="underline hover:text-primary" href="#" aria-label="링크드인">LinkedIn</a>
+          <a class="underline hover:text-primary" href="#" aria-label="깃허브">GitHub</a>
+          <a class="underline hover:text-primary" href="#" aria-label="블로그">Blog</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- 푸터: 간단 카피라이트 -->
+    <footer class="py-8 border-t border-bgs/80">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-sm flex items-center justify-between">
+        <p>© <span id="year"></span> Park Jiyeon. All rights reserved.</p>
+        <a href="#home" class="underline hover:text-primary">Back to top</a>
+      </div>
+    </footer>
+
+    <!-- 인터랙션 스크립트: 모바일 메뉴, 전화번호 수정, 프로젝트 모달 -->
+    <script>
+      // 현재 연도 표시
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // 모바일 메뉴 토글
+      const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      mobileMenuBtn.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.contains('hidden');
+        mobileMenu.classList.toggle('hidden');
+        mobileMenuBtn.setAttribute('aria-expanded', String(isOpen));
+      });
+
+      // 전화번호 인라인 수정 (간단한 prompt 활용)
+      const phoneText = document.getElementById('phoneText');
+      const editPhoneBtn = document.getElementById('editPhoneBtn');
+      editPhoneBtn.addEventListener('click', () => {
+        const next = window.prompt('전화번호를 입력하세요 (예: 010-1234-5678)', phoneText.textContent || '');
+        if (next && next.trim()) {
+          phoneText.textContent = next.trim();
+        }
+      });
+
+      // 프로젝트 모달 요소 참조
+      const projectModal = document.getElementById('projectModal');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalSummary = document.getElementById('modalSummary');
+      const modalPeriod = document.getElementById('modalPeriod');
+      const modalRole = document.getElementById('modalRole');
+      const modalStack = document.getElementById('modalStack');
+      const modalGoals = document.getElementById('modalGoals');
+      const modalFeatures = document.getElementById('modalFeatures');
+      const modalLearnings = document.getElementById('modalLearnings');
+      const vizContainer = document.getElementById('vizContainer');
+
+      // 모달 열기/닫기 핸들러
+      function openModal(data) {
+        // 제목/요약/메타 채우기
+        modalTitle.textContent = data.title || '-';
+        modalSummary.textContent = data.summary || '';
+        modalPeriod.textContent = data.period || '-';
+        modalRole.textContent = data.role || '-';
+        modalStack.textContent = data.stack || '-';
+
+        // 리스트(목표/기능/배운점) 렌더링
+        function renderList(ul, items) {
+          ul.innerHTML = '';
+          (items || []).forEach((t) => {
+            const li = document.createElement('li');
+            li.textContent = t;
+            ul.appendChild(li);
+          });
+        }
+        renderList(modalGoals, data.goals);
+        renderList(modalFeatures, data.features);
+        renderList(modalLearnings, data.learnings);
+
+        // 간단 시각화 배지 렌더링
+        vizContainer.innerHTML = '';
+        (data.viz || []).forEach((v) => {
+          const badge = document.createElement('div');
+          badge.className = 'px-3 py-1 rounded-full text-xs border';
+          // 색상 매핑: accent, accent2, accent3 -> Tailwind 확장 색상 사용
+          const colorClass = {
+            accent: 'bg-accent/15 border-accent/40',
+            accent2: 'bg-accent2/15 border-accent2/40',
+            accent3: 'bg-accent3/15 border-accent3/40',
+          }[v.color] || 'bg-bgs/40 border-bgs';
+          badge.className += ' ' + colorClass;
+          badge.textContent = `${v.label}: ${v.value > 0 ? '+' : ''}${v.value}%`;
+          vizContainer.appendChild(badge);
+        });
+
+        // 모달 표시
+        projectModal.classList.remove('hidden');
+        projectModal.classList.add('flex');
+        projectModal.setAttribute('aria-hidden', 'false');
+        // 포커스 트랩 단순 구현(접근성 보완)
+        document.getElementById('closeModalBtn').focus();
+      }
+
+      function closeModal() {
+        projectModal.classList.remove('flex');
+        projectModal.classList.add('hidden');
+        projectModal.setAttribute('aria-hidden', 'true');
+      }
+
+      document.getElementById('closeModalBtn').addEventListener('click', closeModal);
+      document.getElementById('closeModalBtn2').addEventListener('click', closeModal);
+      projectModal.addEventListener('click', (e) => {
+        // 오버레이 클릭 시 닫기
+        if (e.target === projectModal) closeModal();
+      });
+
+      // 카드 클릭 이벤트 위임: data-project 파싱하여 모달 오픈
+      document.querySelectorAll('#projects [data-project]').forEach((card) => {
+        card.addEventListener('click', () => {
+          try {
+            const data = JSON.parse(card.getAttribute('data-project'));
+            openModal(data);
+          } catch (err) {
+            console.error('프로젝트 데이터 파싱 오류', err);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
+
